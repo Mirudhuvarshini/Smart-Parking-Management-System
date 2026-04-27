@@ -28,7 +28,10 @@ def get_db_connection():
         host=db_host,
         port=db_port,
         user=db_user,
-        password=db_pass
+        password=db_pass,
+        ssl_disabled=False,
+        ssl_verify_cert=False,
+        ssl_verify_identity=False
     )
     cursor = db.cursor()
     cursor.execute(f"CREATE DATABASE IF NOT EXISTS {db_name}")
@@ -40,7 +43,10 @@ def get_db_connection():
         port=db_port,
         user=db_user,
         password=db_pass,
-        database=db_name
+        database=db_name,
+        ssl_disabled=False,
+        ssl_verify_cert=False,
+        ssl_verify_identity=False
     )
 
 # ---------------- CREATE TABLES ---------------- #
