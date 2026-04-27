@@ -52,42 +52,47 @@ def get_db_connection():
 # ---------------- CREATE TABLES ---------------- #
 
 def create_tables():
-    db = get_db_connection()
-    cursor = db.cursor()
+    try:
+        db = get_db_connection()
+        cursor = db.cursor()
 
-    # USERS TABLE
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS users (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            email VARCHAR(255) UNIQUE NOT NULL,
-            password VARCHAR(255) NOT NULL,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    """)
+        # USERS TABLE
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS users (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                email VARCHAR(255) UNIQUE NOT NULL,
+                password VARCHAR(255) NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
 
-    # ADMINS TABLE
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS admins (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            email VARCHAR(255) UNIQUE NOT NULL,
-            password VARCHAR(255) NOT NULL,
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    """)
+        # ADMINS TABLE
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS admins (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                email VARCHAR(255) UNIQUE NOT NULL,
+                password VARCHAR(255) NOT NULL,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
 
-    # PARKING RECORDS (Sensor Data)
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS parking_records (
-            id INT AUTO_INCREMENT PRIMARY KEY,
-            available_spaces INT NOT NULL,
-            occupied_spaces INT NOT NULL,
-            timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-        )
-    """)
+        # PARKING RECORDS (Sensor Data)
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS parking_records (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                available_spaces INT NOT NULL,
+                occupied_spaces INT NOT NULL,
+                timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
 
-    db.commit()
-    cursor.close()
-    db.close()
+        db.commit()
+        cursor.close()
+        db.close()
+
+    except Exception as e:
+        print(f"Warning: Could not connect to database or create tables: {e}")
+        pass
 
 create_tables()
 
