@@ -12,7 +12,7 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000'}/api/signup`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL || 'https://smart-parking-management-system-y8w3.onrender.com'}/api/signup`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ ...form, role })
