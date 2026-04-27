@@ -19,12 +19,14 @@ all_bookings_db = []
 
 def get_db_connection():
     db_host = os.environ.get("DB_HOST", "localhost")
+    db_port = int(os.environ.get("DB_PORT", 3306))
     db_user = os.environ.get("DB_USER", "root")
     db_pass = os.environ.get("DB_PASSWORD", "Nagavalar@123")
     db_name = os.environ.get("DB_NAME", "parking_system")
 
     db = mysql.connector.connect(
         host=db_host,
+        port=db_port,
         user=db_user,
         password=db_pass
     )
@@ -35,6 +37,7 @@ def get_db_connection():
 
     return mysql.connector.connect(
         host=db_host,
+        port=db_port,
         user=db_user,
         password=db_pass,
         database=db_name
