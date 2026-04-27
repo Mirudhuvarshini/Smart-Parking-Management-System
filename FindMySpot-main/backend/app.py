@@ -91,6 +91,11 @@ def create_tables():
 
 create_tables()
 
+# ---------------- HEALTHCHECK ---------------- #
+@app.route('/', methods=['GET'])
+def index():
+    return "Smart Parking API is LIVE and running on Render!", 200
+
 # ---------------- AUTHENTICATION APIs ---------------- #
 
 @app.route('/api/signup', methods=['POST'])

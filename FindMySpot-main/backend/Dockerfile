@@ -13,7 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Expose port
-EXPOSE 5000
+ENV PORT 5000
+EXPOSE ${PORT}
 
 # Run with Gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "--workers", "1", "--timeout", "120", "app:app"]
+CMD gunicorn --bind 0.0.0.0:$PORT --workers 1 --timeout 300 app:app
