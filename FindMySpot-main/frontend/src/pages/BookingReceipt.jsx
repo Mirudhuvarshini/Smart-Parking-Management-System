@@ -34,7 +34,7 @@ export default function BookingReceipt() {
 
   const syncWithAdmin = async (bookingData) => {
     try {
-      await fetch(`${import.meta.env.VITE_API_URL || 'https://smart-parking-management-system-y8w3.onrender.com'}/api/sync_booking`, {
+      await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000'}/api/sync_booking`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(bookingData),

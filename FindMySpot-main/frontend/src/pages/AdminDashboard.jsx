@@ -17,7 +17,7 @@ export default function AdminDashboard() {
 
   const fetchData = async () => {
     try {
-      const sensorRes = await fetch(`${import.meta.env.VITE_API_URL || 'https://smart-parking-management-system-y8w3.onrender.com'}/api/dashboard`);
+      const sensorRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000'}/api/dashboard`);
       const sensorResult = await sensorRes.json();
       const formattedData = sensorResult.map(item => ({
         ...item,
@@ -25,7 +25,7 @@ export default function AdminDashboard() {
       }));
       setData(formattedData);
 
-      const bookingRes = await fetch(`${import.meta.env.VITE_API_URL || 'https://smart-parking-management-system-y8w3.onrender.com'}/api/all_bookings`);
+      const bookingRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000'}/api/all_bookings`);
       const bookingResult = await bookingRes.json();
       setUserBookings(bookingResult);
       setLoading(false);
@@ -42,7 +42,7 @@ export default function AdminDashboard() {
 
   const finalizeCheckIn = async (transactionId) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL || 'https://smart-parking-management-system-y8w3.onrender.com'}/api/verify_checkin/${transactionId}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000'}/api/verify_checkin/${transactionId}`, {
         method: 'DELETE',
       });
       if (response.ok) {
@@ -142,7 +142,7 @@ export default function AdminDashboard() {
             <button onClick={() => setIsScanning(true)} className="bg-blue-600 hover:bg-blue-500 text-white font-black px-6 py-3 rounded-full shadow-lg flex items-center gap-2 transition-all">
               <ScanLine size={18} /> VERIFY ENTRY
             </button>
-            <button onClick={() => window.location.href = `${import.meta.env.VITE_API_URL || 'https://smart-parking-management-system-y8w3.onrender.com'}/api/download_report`} className="bg-green-500 hover:bg-green-400 text-[#0f172a] font-bold px-8 py-3 rounded-full transition-all">
+            <button onClick={() => window.location.href = `${import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000'}/api/download_report`} className="bg-green-500 hover:bg-green-400 text-[#0f172a] font-bold px-8 py-3 rounded-full transition-all">
               DOWNLOAD REPORT →
             </button>
           </div>
