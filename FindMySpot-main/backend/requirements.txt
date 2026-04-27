@@ -1,0 +1,10 @@
+flask
+flask-cors
+numpy
+opencv-python-headless
+ultralytics
+gunicorn
+mysql-connector-python
+pandas
+openpyxl
+flask-bcrypt
